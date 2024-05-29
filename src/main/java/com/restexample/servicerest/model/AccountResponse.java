@@ -31,5 +31,19 @@ public class AccountResponse {
         private Long lastBillDueDate;
         private Integer currencyId;
         private String currencyIsoCode;
+
+        public Account toAccount() {
+            Account account = new Account();
+            account.setCustomerName(this.customerName);
+            account.setAccountReference(this.accountReference);
+            account.setAccountBalance(this.accountBalance);
+            account.setLastBillAmount(this.lastBillAmount);
+            account.setLastBillDueDate(this.lastBillDueDate);
+            account.setCurrencyId(this.currencyId);
+            account.setCurrencyIsoCode(this.currencyIsoCode);
+            return account;
+        }
+
+        
     }
 }
