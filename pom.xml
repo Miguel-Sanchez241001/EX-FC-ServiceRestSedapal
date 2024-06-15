@@ -62,6 +62,37 @@
 			<version>2.0.2</version>
 		</dependency>
 
+		<!-- dependencias spring security y jwt  -->
+		<!-- <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>0.11.3</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>0.11.3</version>
+			<scope>runtime</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>0.11.3</version>
+			<scope>runtime</scope>
+		</dependency> -->
+		
+
+
+
+
+
 	</dependencies>
 
 	<build>
@@ -70,6 +101,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<finalName>examplerestsedapal</finalName>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>

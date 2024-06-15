@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,9 @@ public class RestControllerExample {
     private AccountRepository accountRepository;
 
     @GetMapping("/{accountReference}/balance")
-   public ResponseEntity<?> getAccountBalance(@PathVariable String accountReference) {
+   public ResponseEntity<?> getAccountBalance(@PathVariable String accountReference,
+    @RequestHeader("Authorizationss") String authorizationHeader,
+   @RequestHeader("X-Incms-Origin-D") String username) {
         return accountRepository.findById(accountReference)
                 .map(account -> ResponseEntity.ok(new AccountResponse(account)))
                 .orElseGet(() -> {
@@ -39,8 +42,12 @@ public class RestControllerExample {
                 });
     }
 
-@PostMapping("/externalPayment")
-    public ResponseEntity<?> processExternalPayment(@RequestHeader("Autori") String Autori,@RequestHeader("Autoriza") String Autoriza, @RequestBody ExternalPaymentRequest paymentRequest) {
+@PostMapping(value = "/externalPayment",produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> processExternalPayment(@RequestBody ExternalPaymentRequest paymentRequest,
+
+    @RequestHeader("Authorizationss") String authorizationHeader,
+        @RequestHeader("X-Incms-Origin-D") String username) {
+
         if (paymentRequest.getPaymentCenter() == null) {
             return ResponseEntity.status(422).body(new ErrorResponse());
         }
@@ -78,8 +85,11 @@ public class RestControllerExample {
 
 
 
-    @PostMapping("/sedCancelExternalPayment")
-    public ResponseEntity<?> processExternalPaymentAnulacion(@RequestBody ExternalPaymentRequest cancelRequest) {
+    @PostMapping(value = "/sedCancelExternalPayment",produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> processExternalPaymentAnulacion(@RequestBody ExternalPaymentRequest cancelRequest,
+
+    @RequestHeader("Authorizationss") String authorizationHeader,
+        @RequestHeader("X-Incms-Origin-D") String username) {
         if (cancelRequest.getPaymentCenter() == null) {
             return ResponseEntity.status(422).body(new ErrorResponse());
         }
