@@ -6,12 +6,7 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.restexample.servicerest.model.Account;
 import com.restexample.servicerest.model.AccountResponse;
@@ -45,7 +40,7 @@ public class RestControllerExample {
     }
 
 @PostMapping("/externalPayment")
-    public ResponseEntity<?> processExternalPayment(@RequestBody ExternalPaymentRequest paymentRequest) {
+    public ResponseEntity<?> processExternalPayment(@RequestHeader("Autori") String Autori,@RequestHeader("Autoriza") String Autoriza, @RequestBody ExternalPaymentRequest paymentRequest) {
         if (paymentRequest.getPaymentCenter() == null) {
             return ResponseEntity.status(422).body(new ErrorResponse());
         }
