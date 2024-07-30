@@ -17,7 +17,7 @@ public class ServicerestApplication {
 	public GroupedOpenApi myApi() {
 		return GroupedOpenApi.builder()
 			.group("Servicio Rest Generico Example Entidad Externa")
-			.pathsToMatch("/api/**"  )
+			.pathsToMatch("/api/**","/auth/**"  )
 			.build();
 	}
 
